@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"description": "n8n nodes for SaaSCity: manage your listings, react to upvotes and search the SaaSCity launch directory.",
 	"license": "MIT",
-	"homepage": "https://github.com/nyyhao/n8n-nodes-saascity#readme",
+	"homepage": "https://github.com/best-directories/n8n-nodes-saascity#readme",
 	"keywords": [
 		"n8n-community-node-package",
 		"n8n",
@@ -17,7 +17,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nyyhao/n8n-nodes-saascity.git"
+		"url": "git+https://github.com/best-directories/n8n-nodes-saascity.git"
 	},
 	"scripts": {
 		"build": "n8n-node build",

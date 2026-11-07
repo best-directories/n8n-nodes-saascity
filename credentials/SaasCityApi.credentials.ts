@@ -12,7 +12,7 @@ export class SaasCityApi implements ICredentialType {
 
 	icon = 'file:../nodes/SaasCity/saascity.svg' as const;
 
-	documentationUrl = 'https://github.com/nyyhao/n8n-nodes-saascity?tab=readme-ov-file#credentials';
+	documentationUrl = 'https://github.com/best-directories/n8n-nodes-saascity?tab=readme-ov-file#credentials';
 
 	properties: INodeProperties[] = [
 		{
