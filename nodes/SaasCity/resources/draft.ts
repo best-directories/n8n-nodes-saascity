@@ -1,0 +1,110 @@
+import type { INodeProperties } from 'n8n-workflow';
+import { CATEGORY_OPTIONS, TAGS_EXPRESSION } from '../shared';
+
+const show = { show: { resource: ['draft'], operation: ['create'] } };
+
+export const draftDescription: INodeProperties[] = [
+	{
+		displayName: 'Operation',
+		name: 'operation',
+		type: 'options',
+		noDataExpression: true,
+		displayOptions: { show: { resource: ['draft'] } },
+		options: [
+			{
+				name: 'Create',
+				value: 'create',
+				action: 'Create a listing draft',
+				description:
+					'Start a listing draft and get its claim URL. Nothing is listed or charged until a person opens the URL, picks a plan and submits.',
+				routing: { request: { method: 'POST', url: '/drafts' } },
+			},
+		],
+		default: 'create',
+	},
+	{
+		displayName: 'Title',
+		name: 'title',
+		type: 'string',
+		required: true,
+		default: '',
+		description: 'Product name, 3 to 60 characters',
+		displayOptions: show,
+		routing: { send: { type: 'body', property: 'title' } },
+	},
+	{
+		displayName: 'Tagline',
+		name: 'tagline',
+		type: 'string',
+		required: true,
+		default: '',
+		description: 'One line, 10 to 100 characters',
+		displayOptions: show,
+		routing: { send: { type: 'body', property: 'tagline' } },
+	},
+	{
+		displayName: 'Category',
+		name: 'category',
+		type: 'options',
+		required: true,
+		options: CATEGORY_OPTIONS,
+		default: 'saas',
+		displayOptions: show,
+		routing: { send: { type: 'body', property: 'category' } },
+	},
+	{
+		displayName: 'Description',
+		name: 'description',
+		type: 'string',
+		required: true,
+		typeOptions: { rows: 5 },
+		default: '',
+		description: '50 to 5,000 characters',
+		displayOptions: show,
+		routing: { send: { type: 'body', property: 'description' } },
+	},
+	{
+		displayName: 'Website URL',
+		name: 'website_url',
+		type: 'string',
+		required: true,
+		default: '',
+		placeholder: 'https://example.com',
+		description: 'Https, on its own domain. Free subdomain hosts are refused.',
+		displayOptions: show,
+		routing: { send: { type: 'body', property: 'website_url' } },
+	},
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		displayOptions: show,
+		options: [
+			{
+				displayName: 'GitHub URL',
+				name: 'github_url',
+				type: 'string',
+				default: '',
+				routing: { send: { type: 'body', property: 'github_url' } },
+			},
+			{
+				displayName: 'Tags',
+				name: 'tags',
+				type: 'string',
+				default: '',
+				placeholder: 'analytics, seo',
+				description: 'Comma-separated, up to 10',
+				routing: { send: { type: 'body', property: 'tags', value: TAGS_EXPRESSION } },
+			},
+			{
+				displayName: 'X (Twitter) URL',
+				name: 'twitter_url',
+				type: 'string',
+				default: '',
+				routing: { send: { type: 'body', property: 'twitter_url' } },
+			},
+		],
+	},
+];
